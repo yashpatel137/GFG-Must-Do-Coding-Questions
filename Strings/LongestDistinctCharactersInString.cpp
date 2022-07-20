@@ -54,9 +54,6 @@ int main()
     }
 }
 
-// Contributed By: Pranay Bansal
-// } Driver Code Ends
-
 
 int longestSubstrDistinctChars (string S)
 {
