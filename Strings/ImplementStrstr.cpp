@@ -1,3 +1,34 @@
+//Method 1
+int strstr(string s, string x)
+{
+    int size1=s.length();
+    int size2=x.length();
+    int flag=-1;
+    int i=0,j=0;
+    while(i<size1 && j<size2)
+    {
+        if(x[j]==s[i])
+        {
+            i++;
+            j++;
+        }
+        if(j==size2)
+        {
+            return i-j;
+        }
+        if(x[j]!=s[i])
+        {
+            i++;
+            j=0;
+        }
+    }
+    return -1;
+}
+
+
+//Method 2
+
+
 // { Driver Code Starts
 #include<bits/stdc++.h>
 using namespace std;
