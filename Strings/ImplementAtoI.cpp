@@ -1,3 +1,32 @@
+//Method 1
+class Solution{
+  public:
+    /*You are required to complete this method */
+    int atoi(string str) {
+        int ans=0,sign=1;
+        int len=str.length();
+        for(int i=0;i<len;i++)
+        {
+            if((str[i]>='0' && str[i]<='9'))
+            {
+                ans=ans*10 + str[i]-'0';
+            }
+            else if(str[i]=='-')
+            {
+                sign=-1;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+        return sign*ans;
+    }
+};
+
+
+//Method 2
+
 // { Driver Code Starts
 //Initial template for C++
 
