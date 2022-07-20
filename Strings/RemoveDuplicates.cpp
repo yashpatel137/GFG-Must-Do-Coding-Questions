@@ -1,3 +1,27 @@
+//Method 1
+
+class Solution{
+public:	
+		
+	string removeDups(string S) 
+	{
+	    string st;
+	    int arr[26]={0};
+	    int size=S.length();
+	    for(int i=0;i<size;i++)
+	    {
+	        if(arr[S[i]-'a']==0)
+	        {
+	            arr[S[i]-'a']++;
+	            st+=S[i];
+	        }
+	    }
+	    return st;
+	}
+};
+
+//Method 2
+
 // { Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
