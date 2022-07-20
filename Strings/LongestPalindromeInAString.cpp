@@ -1,9 +1,42 @@
-// { Driver Code Starts
-#include<bits/stdc++.h>
-using namespace std;
+class Solution {
+  public:
+    string longestPalin (string S) 
+    {
+        int l,h,start=0,end=1;
+        int n=S.size();
+        for(int i=1;i<n;i++)
+        {
+            l=i-1;
+            h=i;
+            while(l>=0 && h<n && S[l]==S[h])
+            {
+                if(h-l+1>end)
+                {
+                    start=l;
+                    end=h-l+1;
+                }
+                l--;
+                h++;
+            }
+            l=i-1;
+            h=i+1;
+            while(l>=0 && h<n && S[l]==S[h])
+            {
+                if(h-l+1>end)
+                {
+                    start=l;
+                    end=h-l+1;
+                }
+                l--;
+                h++;
+            }
+        }
+        return S.substr(start,end);
+    }
+};
 
+//Method 2
 
- // } Driver Code Ends
 class Solution 
 {
   public:
@@ -47,19 +80,3 @@ class Solution
         return S.substr(ind, maxLength);
     }
 };
-
-// { Driver Code Starts.
-
-int main()
-{
-    int t; cin >> t;
-    while (t--)
-    {
-        string S; cin >> S;
-        
-        Solution ob;
-        cout << ob.longestPalin (S) << endl;
-    }
-}
-// Contributed By: Pranay Bansal
-  // } Driver Code Ends
