@@ -1,12 +1,45 @@
-// { Driver Code Starts
-// Initial Template for C++
+//Method 1
+class Solution{
+public:
+    string remove(string s){
+        string st="";
+        int size=s.length(),j,l=0,r,change=0;
+        for(int i=0;i<size;)
+        {
+            j=i+1;
+            int flag=0;
+            while((s[i]==s[j]) && j<size)
+            {
+                j++;
+                flag=1;
+                change=1;
+            }
+            if(flag==1)
+            {
+                l=j;
+                i=j;
+            }
+            else
+            {
+                r=i;
+                st+=s.substr(l,r-l+1);
+                l=j;
+                i++;
+            }
+            
+        }
+        if(change==0)
+        {
+            return st;
+        }
+        else
+        {
+            return remove(st);
+        }
+    }
+};
 
-#include <bits/stdc++.h>
-using namespace std;
-
- // } Driver Code Ends
-//User function template for C++
-
+//Method 2
 class Solution{
 public:
     string remove(string s)
@@ -44,18 +77,3 @@ public:
     }
 };
 
-// { Driver Code Starts.
-
-int main() {
-    int t;
-    string tc;
-    getline(cin, tc);
-    t = stoi(tc);
-    while (t--) {
-        string s;
-        getline(cin, s);
-        Solution ob;
-        cout << ob.remove(s) << "\n";
-    }
-    return 0;
-}  // } Driver Code Ends
