@@ -1,3 +1,28 @@
+//Method 1
+class Solution{
+    public:
+    /* Should return data of middle node. If linked list is empty, then  -1*/
+    int getMiddle(Node *head)
+    {
+        Node *temp=head;
+        int count=0;
+        while(temp!=NULL)
+        {
+            count++;
+            temp=temp->next;
+        }
+        int x=count/2;
+        temp=head;
+        for(int i=0;i<x;i++)
+        {
+            temp=temp->next;
+        }
+        return temp->data;
+    }
+};
+
+
+//Method 2
 // { Driver Code Starts
 /* Function to get the middle of the linked list*/
 
