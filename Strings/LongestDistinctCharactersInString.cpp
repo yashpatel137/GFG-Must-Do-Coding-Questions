@@ -68,3 +68,20 @@ int longestSubstrDistinctChars (string S)
     }
     return res;
 }
+
+//Method 3
+int longestSubstrDistinctChars (string S)
+{
+    int len=0,start=0;
+    map<char,int> mp;
+    for(int i=0;i<S.length();i++)
+    {
+        if(mp.find(S[i])!=mp.end())
+        {
+            start=max(start,mp[S[i]]+1);
+        }
+        mp[S[i]]=i;
+        len=max(len,i-start+1);
+    }
+    return len;
+}
