@@ -1,3 +1,33 @@
+//Method 1
+class Solution
+{
+    public:
+    //Function to rotate a linked list.
+    Node* rotate(Node* head, int k)
+    {
+        if(k==0)
+        {
+            return head;
+        }
+        Node *current = head;
+        while(current->next!=NULL)
+        {
+            current=current->next;
+        }
+        current->next=head;
+        current=head;
+        for(int i=0;i<k-1;i++)
+        {
+            current=current->next;
+        }
+        head=current->next;
+        current->next=NULL;
+        return head;
+    }
+};
+
+//Method 2
+
 // { Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
