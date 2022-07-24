@@ -1,3 +1,48 @@
+//method 1
+class Solution
+{
+    public:
+    //Function to connect nodes at same level.
+    void connect(Node *root)
+    {
+        if(!root)
+        {
+            return;
+        }
+        queue<Node*>q;
+        q.push(root);
+        while(!q.empty())
+        {
+            int size=q.size();
+            Node*temp=nullptr;
+            while(size--)
+            {
+                Node *curr=q.front();
+                q.pop();
+                if(curr->left)
+                {
+                    q.push(curr->left);
+                }
+                if(curr->right)
+                {
+                    q.push(curr->right);
+                }
+                if(temp==nullptr)
+                {
+                    temp=curr;
+                }
+                else
+                {
+                    temp->nextRight=curr;
+                    temp=temp->nextRight;
+                }
+            }
+        }
+    }    
+      
+};
+
+//Method 2
 // { Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
