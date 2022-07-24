@@ -1,3 +1,40 @@
+//Method 1
+class Solution
+{
+    public:
+    //Function to find the vertical order traversal of Binary Tree.
+    vector<int> verticalOrder(Node *root)
+    {
+        vector<int> ans;
+        queue<pair<Node*,int>> q;
+        multimap<int,int> mp;
+        q.push({root,0});
+        while(!q.empty())
+        {
+            auto it=q.front();
+            q.pop();
+            int line=it.second;
+            Node *temp=it.first;
+            mp.insert({line,temp->data});
+            if(temp->left!=NULL)
+            {
+                q.push({temp->left,line-1});
+            }
+            if(temp->right!=NULL)
+            {
+                q.push({temp->right,line+1});
+            }
+        }
+        for(auto it:mp)
+        {
+            ans.push_back(it.second);
+        }
+        return ans;
+    }
+};
+
+//Method 2
+
 // { Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
