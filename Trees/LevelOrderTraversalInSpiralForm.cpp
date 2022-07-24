@@ -1,3 +1,48 @@
+//method 1
+vector<int> findSpiral(Node *root)
+{
+    vector<int> ans;
+    int level=0;
+    queue<Node*> q;
+    q.push(root);
+    if(root==NULL)
+    {
+        return ans;
+    }
+    while(!q.empty())
+    {
+        int size=q.size();
+        vector<int> temp;
+        while(size!=0)
+        {
+            Node *tmp=q.front();
+            q.pop();
+            temp.push_back(tmp->data);
+            if(tmp->left)
+            {
+                q.push(tmp->left);
+            }
+            if(tmp->right)
+            {
+                q.push(tmp->right);
+            }
+            size--;
+        }
+        if(level%2==0)
+        {
+            reverse(temp.begin(), temp.end());
+        }
+        for(int i=0;i<temp.size();i++)
+        {
+            ans.push_back(temp[i]);
+        }
+        level++;
+    }
+    return ans;
+}
+
+//Method 2
+
 // { Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
