@@ -1,3 +1,41 @@
+//Method 1
+class Solution {
+  public:
+    vector <int> bottomView(Node *root) {
+        map<int,int>mp;
+        vector<int>ans;
+        if(root==NULL)
+        {
+            return ans;
+        }
+        queue<pair<Node*,int>>q;
+        q.push({root,0});
+        while(!q.empty())
+        {
+            auto it=q.front();
+            q.pop();
+            int l=it.second;
+            Node* n=it.first;
+            mp[l]=n->data;
+            if(n->left)
+            {
+                q.push({n->left,l-1});
+            }
+            if(n->right)
+            {
+                q.push({n->right,l+1});
+            }
+        }
+        for(auto it:mp)
+        {
+            ans.push_back(it.second);
+        }
+        return ans;
+    }
+};
+
+//Method 2
+
 // { Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
