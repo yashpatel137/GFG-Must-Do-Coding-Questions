@@ -1,4 +1,32 @@
-// { Driver Code Starts
+//Method 1
+class Solution
+{
+    public: 
+    //Function to convert binary tree to doubly linked list and return it.
+    Node* pre=NULL;
+    Node * bToDLL(Node *root)
+    {
+        if(root==NULL)
+        {
+            return NULL;
+        }
+        Node* head=bToDLL(root->left);
+        if(pre==NULL)
+        {
+            head=root;
+        }
+        else
+        {
+            pre->right=root;
+            root->left=pre;
+        }
+        pre=root;
+        bToDLL(root->right);
+        return head;
+    }
+};
+
+//Method 2
 #include <bits/stdc++.h>
 using namespace std;
 
