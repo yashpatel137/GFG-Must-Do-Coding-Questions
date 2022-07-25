@@ -1,4 +1,20 @@
-// { Driver Code Starts
+//Method 1
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        if(p==NULL and q==NULL)
+        {
+            return true;
+        }
+        if((p==NULL and q!=NULL) || (p!=NULL and q==NULL))
+        {
+            return false;
+        }
+        return (p->val==q->val)and(isSameTree(p->left,q->left))and(isSameTree(p->right,q->right));
+    }
+};
+
+//Method 2
 #include <bits/stdc++.h>
 using namespace std;
 
