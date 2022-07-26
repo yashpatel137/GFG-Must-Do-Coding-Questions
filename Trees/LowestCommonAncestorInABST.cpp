@@ -16,7 +16,38 @@ Node* LCA(Node *root, int n1, int n2)
 }
 
 //Method 2
+class Solution
+{
+    public:
+    //Function to return the lowest common ancestor in a Binary Tree.
+    Node* lca(Node* root ,int n1 ,int n2 )
+    {
+        if(root==NULL)
+        {
+            return NULL;
+        }
+        if(root->data==n1 || root->data==n2)
+        {
+            return root;
+        }
+        Node* ld=lca(root->left,n1,n2);
+        Node* rd=lca(root->right,n1,n2);
+        if(ld!=NULL and rd!=NULL)
+        {
+            return root;
+        }
+        else if(ld!=NULL)
+        {
+            return ld;
+        }
+        else
+        {
+            return rd;
+        }
+    }
+};
 
+//Method 3
 // { Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
