@@ -1,4 +1,27 @@
-// { Driver Code Starts
+//Method 1
+ class Solution {
+public:
+    int solve(TreeNode *root, int &ans)
+    {
+        if(!root)
+        {
+            return 0;
+        }
+        int l=solve(root->left,ans);
+        int r=solve(root->right,ans);
+        int h=1+max(l,r);
+        ans=max(ans,l+r);
+        return h;
+    }
+    int diameterOfBinaryTree(TreeNode* root) {
+        int ans=0;
+        solve(root,ans);
+        return ans;
+    }
+};
+
+//Method 2
+
 #include <bits/stdc++.h>
 using namespace std;
 
