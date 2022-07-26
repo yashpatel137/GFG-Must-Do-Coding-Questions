@@ -1,4 +1,107 @@
-// { Driver Code Starts
+//Method 1
+class Codec {
+public:
+    string s;
+    void preorder(TreeNode* root)
+    {
+        if(!root)
+        {
+            s+='n';
+            s+=',';
+            return;
+        } 
+        s+=to_string(root->val);
+        s+=',';
+        preorder(root->left);
+        preorder(root->right);
+    }
+    
+    string serialize(TreeNode* root) 
+    {    
+        if(!root)
+        {
+            return "";
+        }
+        s="";
+        preorder(root);
+        return s;
+    }
+    // Decodes your encoded data to tree.
+    int i;
+    TreeNode* solve(string s,int n)
+    {
+        string t="";
+        for(i;i<n;i++)
+        {
+            if(s[i]==',')
+                break;
+            t+=s[i];
+        }
+        i++;
+        if(t=="n")
+            return NULL;
+        TreeNode *root=new TreeNode(stoi(t));
+        root->left=solve(s,n);
+        root->right=solve(s,n);
+        return root;
+    }
+    
+    TreeNode* deserialize(string s) 
+    {
+        if(s.size()==0)
+            return NULL;
+        int n=s.size();  
+        i=0;
+        return solve(s,n);
+    }
+};
+
+//Method 2
+class Solution
+{
+    public:
+    //Function to serialize a tree and return a list containing nodes of tree.
+    void find(Node *root, vector<int> &vec)
+    {
+        if(root==NULL)
+        {
+            vec.push_back(-1);
+            return;
+        }
+        vec.push_back(root->data);
+        find(root->left,vec);
+        find(root->right,vec);
+    }
+    vector<int> serialize(Node *root) 
+    {
+        vector<int> vec;
+        find(root,vec);
+        return vec;
+    }
+    
+    //Function to deserialize a list and construct the tree.
+    Node *cal(vector<int> &a,int &i)
+    {
+        if(a.size()==i || a[i]==-1)
+        {
+            i++;
+            return NULL;
+        }
+        Node *temp=new Node(a[i]);
+        i++;
+        temp->left=cal(a,i);
+        temp->right=cal(a,i);
+        return temp;
+    }
+    Node * deSerialize(vector<int> &A)
+    {
+       int i=0;
+       return cal(A,i);
+    }
+
+};
+
+//Method 3
 #include <bits/stdc++.h>
 
 using namespace std;
