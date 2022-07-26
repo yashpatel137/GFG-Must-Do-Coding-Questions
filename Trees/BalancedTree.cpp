@@ -1,4 +1,29 @@
-// { Driver Code Starts
+//method 1
+class Solution {
+public:
+    int solve(TreeNode *root, int &flag)
+    {
+        int l=0,r=0;
+        if(!root)
+        {
+            return 0;
+        }
+        l=solve(root->left,flag);
+        r=solve(root->right,flag);
+        if(abs(l-r)>1)
+        {
+            flag=0;
+        }
+        return max(l,r)+1;
+    }
+    bool isBalanced(TreeNode* root) {
+        int flag=1;
+        solve(root,flag);
+        return flag;
+    }
+};
+
+//Method 2
 #include <bits/stdc++.h>
 using namespace std;
 
