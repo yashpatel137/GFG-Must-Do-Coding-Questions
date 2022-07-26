@@ -14,7 +14,24 @@ Node* LCA(Node *root, int n1, int n2)
         return root;
     }
 }
-
+=========================================================================================
+    class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if (!root)
+            return root;
+        
+        if (root == p || root == q)
+            return root;
+        
+        TreeNode* left = lowestCommonAncestor(root->left, p, q);
+        TreeNode* right = lowestCommonAncestor(root->right, p, q);
+        
+        if (left && right)
+            return root;
+        
+        return left? left: right;
+};
 //Method 2
 class Solution
 {
