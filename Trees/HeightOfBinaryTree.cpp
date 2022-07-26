@@ -1,4 +1,20 @@
-// { Driver Code Starts
+//Method 1
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+        if(!root)
+        {
+            return 0;
+        }
+        int l=maxDepth(root->left);
+        int r=maxDepth(root->right);
+        int h=1+max(l,r);
+        return h;
+    }
+};
+
+
+//Method 2
 //Initial template for C++
 
 #include <bits/stdc++.h>
