@@ -135,7 +135,11 @@ public:
         // code here
         int res = INT_MIN;
         int val = findMaxPathSum(root, res);
-        return res == INT_MIN ? val : res;
+        if(!root->left || !root->right)
+        {
+            res=max(res,val);
+        }
+        return res;
     }
 };
 
