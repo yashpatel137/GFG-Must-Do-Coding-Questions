@@ -1,4 +1,48 @@
-// { Driver Code Starts
+//Method 1
+class Solution {
+  public:
+    void solve(vector<vector<char>> &matrix, int x, int y, int r, int c)
+    {
+        if(x<0||x>=r||y<0||y>=c||matrix[x][y]!='1')
+        {
+            return;
+        }
+        matrix[x][y]='2';
+        solve(matrix,x+1,y,r,c);
+        solve(matrix,x-1,y,r,c);
+        solve(matrix,x,y+1,r,c);
+        solve(matrix,x,y-1,r,c);
+        solve(matrix,x+1,y+1,r,c);
+        solve(matrix,x+1,y-1,r,c);
+        solve(matrix,x-1,y-1,r,c);
+        solve(matrix,x-1,y+1,r,c);
+    }
+    int numIslands(vector<vector<char>>& grid) 
+    {
+        int r=grid.size();
+        int c=grid[0].size();
+        if(r==0)
+        {
+            return 0;
+        }
+        int cnt=0;
+        for(int i=0;i<r;i++)
+        {
+            for(int j=0;j<c;j++)
+            {
+                if(grid[i][j]=='1')
+                {
+                    solve(grid,i,j,r,c);
+                    cnt++;
+                }
+            }
+        }
+        return cnt;
+    }
+};
+
+
+//Method 2
 #include<bits/stdc++.h>
 using namespace std;
 
