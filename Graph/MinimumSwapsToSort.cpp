@@ -1,4 +1,68 @@
-// { Driver Code Starts
+//Method 1
+class Solution 
+{
+    public:
+    //Function to find the minimum number of swaps required to sort the array. 
+	int minSwaps(vector<int>&nums)
+	{
+	    vector<pair<int,int>> vec;
+	    int count=0;
+	    for(int i=0;i<nums.size();i++)
+	    {
+	        vec.push_back({nums[i],i});
+	    }
+	    sort(vec.begin(),vec.end());
+	    for(int i=0;i<nums.size();i++)
+	    {
+	        while(vec[i].second!=i)
+	        {
+	            int tmp=vec[i].second;
+	            swap(vec[i],vec[tmp]);
+	            count++;
+	        }
+	    }
+	    return count;
+	}
+};
+
+//Method 2
+int minimumSwaps(int arr[],int n)
+{
+    // Initialise count variable
+    int count = 0;
+    int i = 0;
+     
+    while (i < n)
+    {
+ 
+        // If current element is
+        // not at the right position
+        if (arr[i] != i + 1)
+        {
+ 
+            while (arr[i] != i + 1)
+            {
+                int temp = 0;
+ 
+                // Swap current element
+                // with correct position
+                // of that element
+                temp = arr[arr[i] - 1];
+                arr[arr[i] - 1] = arr[i];
+                arr[i] = temp;
+                count++;
+            }
+        }
+ 
+        // Increment for next index
+        // when current element is at
+        // correct position
+        i++;
+    }
+    return count;
+}
+
+//Method 3
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -20,7 +84,7 @@ class Solution
 	    int count = 0;
 	    for(int i = 0 ; i < nums.size() ; i++)
 	    {
-	        if(v[i].second == i)
+	        if(vis[i] || v[i].second == i)
 	            continue;
 	        int j = i;
 	        int cycles = 0;
