@@ -1,4 +1,54 @@
-// { Driver Code Starts
+//Method 1
+class Solution {
+  public:
+    int shortestDistance(int n, int m, vector<vector<int>> a, int X, int Y) {
+        if(a[0][0]==0 || a[X][Y]==0)
+        {
+            return -1;
+        }
+      queue<pair<int,int>>q;
+      q.push({0,0});
+      while(!q.empty())
+      {
+          int p=q.size();
+          while(p--)
+          {
+              int i=q.front().first;
+              int j=q.front().second;
+              q.pop();
+               if(j+1>=0&&j+1<m&&a[i][j+1]==1)
+              {
+                  a[i][j+1]+=a[i][j];
+                  q.push({i,j+1});
+              }
+              if(i+1>=0&&i+1<n&&a[i+1][j]==1)
+              {
+                  a[i+1][j]+=a[i][j];
+                  q.push({i+1,j});
+              }
+               if(i-1>=0&&i-1<n&&a[i-1][j]==1)
+              {
+                  a[i-1][j]+=a[i][j];
+                  q.push({i-1,j});
+              }
+              
+              if(j-1>=0&&j-1<m&&a[i][j-1]==1)
+              {
+                  a[i][j-1]+=a[i][j];
+                  q.push({i,j-1});
+              }
+          }
+      }
+      if(a[X][Y]-1==0)
+      {
+          return -1;
+      }
+      return a[X][Y]-1;
+    }
+};
+
+//Method 2
+
 // Initial Template for C++
 
 #include <bits/stdc++.h>
