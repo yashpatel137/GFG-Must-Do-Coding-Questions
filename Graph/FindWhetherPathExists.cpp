@@ -1,4 +1,50 @@
-// { Driver Code Starts
+//Method 1
+class Solution
+{
+    public:
+    //Function to find whether a path exists from the source to destination.
+    void solveDfs(vector<vector<int>> &grid, vector<vector<bool>> &vis,int x,int y)
+    {
+        int n=grid.size();
+        if(x<0||x>=n||y<0||y>=n||vis[x][y]==true||grid[x][y]==0)
+        {
+            return;
+        }
+        vis[x][y]=true;
+        solveDfs(grid,vis,x+1,y);
+        solveDfs(grid,vis,x,y+1);
+        solveDfs(grid,vis,x-1,y);
+        solveDfs(grid,vis,x,y-1);
+    }
+    bool is_Possible(vector<vector<int>>& grid) 
+    {
+        int n=grid.size();
+        int m=grid[0].size();
+        int sx,sy,dx,dy;
+        vector<vector<bool>> vis(n,vector<bool>(m,false));
+        for(int i=0; i<n; i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(grid[i][j]==1)
+                {
+                    sx=i;
+                    sy=j;
+                }
+                if(grid[i][j]==2)
+                {
+                    dx=i;
+                    dy=j;
+                }
+            }
+        }
+        solveDfs(grid,vis,sx,sy);
+        return vis[dx][dy];
+    }
+};
+
+
+//Method 2
 #include<bits/stdc++.h>
 using namespace std;
 
